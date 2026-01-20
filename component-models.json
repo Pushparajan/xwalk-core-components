@@ -1,0 +1,64 @@
+{
+  "title": "XWalk Component Models",
+  "id": "xwalk-models",
+  "models": {
+    "page": {
+      "fields": [
+        {
+          "component": "text",
+          "name": "jcr:title",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "jcr:description",
+          "label": "Description",
+          "valueType": "string"
+        }
+      ]
+    },
+    "hero": {
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Image Alt Text",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    },
+    "cards": {
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Classes",
+          "valueType": "string"
+        }
+      ]
+    },
+    "columns": {
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Classes",
+          "valueType": "string"
+        }
+      ]
+    }
+  }
+}

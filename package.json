@@ -1,26 +1,34 @@
 {
-  "name": "xwalk-core-components",
+  "name": "@adobe/xwalk-core-components",
   "version": "1.0.0",
-  "description": "Modern web components library for cross-platform applications",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "test": "jest"
+  "description": "AEM Edge Delivery Services XWalk Core Components with Universal Editor support",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pushparajan/xwalk-core-components"
   },
-  "keywords": [
-    "web-components",
-    "ui-components",
-    "cross-platform"
-  ],
-  "author": "",
-  "license": "MIT",
+  "scripts": {
+    "lint:js": "eslint .",
+    "lint:css": "stylelint 'blocks/**/*.css' 'styles/*.css'",
+    "lint": "npm run lint:js && npm run lint:css",
+    "build:json": "npm-run-all --parallel build:json:*",
+    "build:json:models": "merge-json-cli 'models/**/*.json' 'component-models.json'",
+    "build:json:definitions": "merge-json-cli 'component-definition.json' '**/component-definition.json' -o 'component-definition.json'",
+    "build:json:filters": "merge-json-cli '**/component-filters.json' -o 'component-filters.json'",
+    "prepare": "husky install"
+  },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "rollup": "^3.20.0",
-    "typescript": "^5.0.0"
+    "@babel/core": "7.25.9",
+    "@babel/eslint-parser": "7.25.9",
+    "eslint": "8.57.1",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-json": "4.0.1",
+    "husky": "9.1.6",
+    "merge-json-cli": "1.0.4",
+    "npm-run-all": "4.1.5",
+    "stylelint": "16.10.0",
+    "stylelint-config-standard": "36.0.1"
   }
 }
