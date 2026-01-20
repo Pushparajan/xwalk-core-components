@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Page - Universal Editor</title>
+  <script src="/scripts/aem.js" type="module"></script>
+  <script src="/scripts/scripts.js" type="module"></script>
+  <link rel="stylesheet" href="/styles/styles.css">
+
+  <!-- Universal Editor Connection -->
+  <meta name="urn:adobe:aem:editor:aemconnection" content="aem:https://author-p12345-e67890.adobeaemcloud.com">
+</head>
+<body>
+  <!-- Main content with Universal Editor instrumentation -->
+  <main data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root"
+        data-aue-type="container"
+        data-aue-filter="section">
+
+    <!-- Section with data-aue attributes -->
+    <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section1"
+         data-aue-type="container"
+         data-aue-label="Hero Section"
+         data-aue-model="section"
+         data-aue-filter="content">
+
+      <!-- Hero Block -->
+      <div class="hero"
+           data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section1/hero"
+           data-aue-type="component"
+           data-aue-label="Hero"
+           data-aue-model="hero">
+        <div>
+          <div>
+            <picture data-aue-prop="image" data-aue-type="media">
+              <img src="/placeholder.jpg" alt="Hero image"
+                   data-aue-prop="imageAlt" data-aue-type="text">
+            </picture>
+          </div>
+          <div data-aue-prop="text" data-aue-type="richtext">
+            <h1>Welcome to XWalk Core Components</h1>
+            <p>Build amazing experiences with AEM Edge Delivery Services and Universal Editor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section2"
+         data-aue-type="container"
+         data-aue-label="Cards Section"
+         data-aue-model="section"
+         data-aue-filter="content">
+
+      <div class="cards"
+           data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section2/cards"
+           data-aue-type="container"
+           data-aue-label="Cards"
+           data-aue-model="cards"
+           data-aue-filter="card">
+
+        <!-- Card 1 -->
+        <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section2/cards/card1"
+             data-aue-type="component"
+             data-aue-label="Card 1"
+             data-aue-model="card">
+          <div>
+            <picture data-aue-prop="image" data-aue-type="media">
+              <img src="/card1.jpg" alt="Card 1">
+            </picture>
+          </div>
+          <div data-aue-prop="text" data-aue-type="richtext">
+            <h3>Performance</h3>
+            <p>Lightning-fast page loads with Edge Delivery Services.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section2/cards/card2"
+             data-aue-type="component"
+             data-aue-label="Card 2"
+             data-aue-model="card">
+          <div>
+            <picture data-aue-prop="image" data-aue-type="media">
+              <img src="/card2.jpg" alt="Card 2">
+            </picture>
+          </div>
+          <div data-aue-prop="text" data-aue-type="richtext">
+            <h3>Universal Editor</h3>
+            <p>WYSIWYG authoring with real-time preview.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section2/cards/card3"
+             data-aue-type="component"
+             data-aue-label="Card 3"
+             data-aue-model="card">
+          <div>
+            <picture data-aue-prop="image" data-aue-type="media">
+              <img src="/card3.jpg" alt="Card 3">
+            </picture>
+          </div>
+          <div data-aue-prop="text" data-aue-type="richtext">
+            <h3>JCR Storage</h3>
+            <p>Content persisted in AEM repository.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section3"
+         data-aue-type="container"
+         data-aue-label="Quote Section"
+         data-aue-model="section">
+
+      <div class="quote"
+           data-aue-resource="urn:aemconnection:/content/xwalk/en/sample-page/jcr:content/root/section3/quote"
+           data-aue-type="component"
+           data-aue-label="Quote"
+           data-aue-model="quote">
+        <div>
+          <blockquote data-aue-prop="quote" data-aue-type="richtext">
+            "The combination of AEM authoring and Edge Delivery performance creates an unbeatable experience."
+          </blockquote>
+          <p data-aue-prop="author" data-aue-type="text">— Adobe Customer</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

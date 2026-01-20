@@ -1,0 +1,13 @@
+{
+  "id": "xwalk-filters",
+  "filters": [
+    {
+      "id": "content",
+      "components": ["hero", "cards", "columns", "quote", "accordion", "tabs", "carousel", "modal"]
+    },
+    {
+      "id": "all",
+      "components": ["*"]
+    }
+  ]
+}

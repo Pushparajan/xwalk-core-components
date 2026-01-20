@@ -1,0 +1,25 @@
+{
+  "project": "XWalk Core Components",
+  "plugins": [
+    {
+      "id": "library",
+      "title": "Block Library",
+      "environments": ["edit", "dev", "preview", "live"],
+      "url": "/tools/sidekick/library/library.html",
+      "isPalette": true
+    },
+    {
+      "id": "tools",
+      "title": "Tools",
+      "isContainer": true
+    },
+    {
+      "containerId": "tools",
+      "id": "validate",
+      "title": "Validate",
+      "environments": ["edit", "dev", "preview"],
+      "event": "validate",
+      "passConfig": true
+    }
+  ]
+}
