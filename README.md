@@ -11,6 +11,17 @@ AEM Edge Delivery Services implementation with a comprehensive block collection 
 - 📱 **Mobile Responsive** - Optimized for all screen sizes
 - 🎯 **SEO Optimized** - Semantic HTML and performance-focused
 
+## Content Repository
+
+This project uses **AEM JCR (Java Content Repository)** for content storage instead of Google Drive:
+
+- **Local Development**: `http://localhost:4502` (AEM Author instance)
+- **Content Path**: `/content/xwalk/` in JCR repository
+- **Universal Editor**: Real-time WYSIWYG editing with AEM
+- **Assets**: Stored in AEM DAM (`/content/dam/xwalk/`)
+
+See [AEM-SETUP.md](./AEM-SETUP.md) for complete setup instructions.
+
 ## Block Collection
 
 ### Content Blocks
@@ -81,10 +92,14 @@ xwalk-core-components/
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18 or higher
-- Git
+- **Node.js 18 or higher**
+- **Git**
+- **Java JDK 11 or 17** (for AEM)
+- **AEM SDK** (download from Adobe Software Distribution)
 
-### Installation
+### Quick Start
+
+#### 1. Clone and Install
 
 ```bash
 # Clone the repository
@@ -93,16 +108,58 @@ cd xwalk-core-components
 
 # Install dependencies
 npm install
+```
 
-# Run linting
-npm run lint
+#### 2. Setup AEM Author Instance
+
+```bash
+# Start AEM on port 4502
+java -jar aem-sdk-quickstart-*.jar -gui
+
+# Wait for AEM to start (5-10 minutes first time)
+# Access at: http://localhost:4502
+# Default credentials: admin / admin
+```
+
+**Detailed Setup**: See [AEM-SETUP.md](./AEM-SETUP.md) for complete AEM configuration.
+
+#### 3. Configure Environment
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your settings
+# AEM_AUTHOR_URL=http://localhost:4502
+```
+
+#### 4. Create Content in AEM
+
+1. Open CRXDE Lite: http://localhost:4502/crx/de
+2. Create content structure:
+   ```
+   /content/xwalk/en/jcr:content/root/
+   ```
+3. Add your first component using Universal Editor
+
+#### 5. Start Development Server
+
+```bash
+# Using AEM CLI
+npm install -g @adobe/aem-cli
+aem up
+
+# Or simple HTTP server
+npx http-server -p 3000
 ```
 
 ### Development
 
 1. **Local Development**
-   - Use the [AEM CLI](https://github.com/adobe/helix-cli) for local development
-   - Run `aem up` to start local development server
+   - AEM Author runs on port 4502
+   - Dev server on port 3000
+   - Content stored in AEM JCR
+   - Code from GitHub repository
 
 2. **Code Quality**
    ```bash
@@ -111,10 +168,10 @@ npm run lint
    npm run lint      # All linting
    ```
 
-3. **Build Component Models**
-   ```bash
-   npm run build:json  # Build all JSON configurations
-   ```
+3. **Universal Editor**
+   - Open: https://experience.adobe.com/#/aem
+   - Edit content visually
+   - Changes save to AEM JCR automatically
 
 ## Block Development
 

@@ -1,2 +1,2 @@
 mountpoints:
-  /: https://drive.google.com/drive/folders/1MGzOt7ubUh3gu7zhZIPb7R7dyRzG371j
+  /: aem:http://localhost:4502
