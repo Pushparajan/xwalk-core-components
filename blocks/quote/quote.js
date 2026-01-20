@@ -1,9 +1,18 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 export default async function decorate(block) {
   const [quotation, attribution] = [...block.children].map((c) => c.firstElementChild);
   const blockquote = document.createElement('blockquote');
+
+  // Preserve instrumentation on blockquote
+  if (block.children.length > 0) {
+    moveInstrumentation(block.firstElementChild, blockquote);
+  }
+
   // decorate quotation
   quotation.className = 'quote-quotation';
   blockquote.append(quotation);
+
   // decoration attribution
   if (attribution) {
     attribution.className = 'quote-attribution';
@@ -15,6 +24,7 @@ export default async function decorate(block) {
       em.replaceWith(cite);
     });
   }
-  block.innerHTML = '';
+
+  block.textContent = '';
   block.append(blockquote);
 }

@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   // build tablist
@@ -14,11 +15,15 @@ export default async function decorate(block) {
 
     // decorate tabpanel
     const tabpanel = block.children[i];
+    const originalTabpanel = tabpanel.cloneNode(true);
     tabpanel.className = 'tabs-panel';
     tabpanel.id = `tabpanel-${id}`;
     tabpanel.setAttribute('aria-hidden', !!i);
     tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
     tabpanel.setAttribute('role', 'tabpanel');
+
+    // Preserve Universal Editor instrumentation
+    moveInstrumentation(originalTabpanel, tabpanel);
 
     // build tab button
     const button = document.createElement('button');
