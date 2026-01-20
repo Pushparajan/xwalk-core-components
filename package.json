@@ -1,0 +1,26 @@
+{
+  "name": "xwalk-core-components",
+  "version": "1.0.0",
+  "description": "Modern web components library for cross-platform applications",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest"
+  },
+  "keywords": [
+    "web-components",
+    "ui-components",
+    "cross-platform"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rollup": "^3.20.0",
+    "typescript": "^5.0.0"
+  }
+}
