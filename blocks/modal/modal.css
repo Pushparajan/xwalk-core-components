@@ -3,7 +3,7 @@ body.modal-open {
 }
 
 .modal dialog::backdrop {
-  background-color: rgb(19 19 19 / 75%);
+  background-color: rgba(30, 57, 50, 0.8);
 }
 
 .modal dialog {
@@ -13,7 +13,9 @@ body.modal-open {
   max-width: 900px;
   max-height: calc(100dvh - (2 * var(--header-height)));
   padding: 0;
-  border: 1px solid var(--dark-color);
+  border: none;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-heavy);
 }
 
 .modal dialog .modal-content {
@@ -22,36 +24,44 @@ body.modal-open {
   overscroll-behavior: none;
   width: 100%;
   max-height: calc(100dvh - (2 * var(--header-height)) - 48px);
-  padding: 24px;
+  padding: var(--spacing-m);
   padding-top: 0;
-  margin-top: 44px;
+  margin-top: 56px;
 }
 
 @media (width >= 900px) {
   .modal dialog {
     width: calc(100vw - 64px);
   }
-  
+
   .modal dialog .modal-content {
     max-height: calc(100dvh - (2 * var(--header-height)) - 64px);
-    padding: 32px;
+    padding: var(--spacing-l);
     padding-top: 0;
   }
 }
 
 .modal .close-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: var(--spacing-s);
+  right: var(--spacing-s);
   width: 44px;
   height: 44px;
   margin: 0;
   border: none;
-  border-radius: 0;
+  border-radius: 50%;
   padding: 0;
-  background-color: transparent;
-  color: var(--text-color);
+  background-color: var(--starbucks-cream);
+  color: var(--starbucks-black);
   line-height: 0;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.modal .close-button:hover {
+  background-color: var(--starbucks-green);
+  color: white;
+  transform: rotate(90deg);
 }
 
 .modal .close-button .icon.icon-close {

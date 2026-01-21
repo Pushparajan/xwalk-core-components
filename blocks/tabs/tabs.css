@@ -1,9 +1,12 @@
+/* Starbucks-style tabs with rounded corners and green accents */
 .tabs .tabs-list {
   display: flex;
-  gap: 0.5ch;
+  gap: var(--spacing-xs);
   max-width: 100%;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
+  border-bottom: 2px solid var(--starbucks-cream);
+  padding-bottom: 4px;
 }
 
 @media (width >= 600px) {
@@ -15,24 +18,32 @@
 @media (width >= 900px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
+    gap: var(--spacing-s);
   }
 }
 
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid var(--dark-color);
-  border-radius: 0;
-  padding: 0.5em;
-  background-color: #949494;
-  color: initial;
-  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius-full) var(--border-radius-full) 0 0;
+  padding: 12px 24px;
+  background-color: var(--starbucks-cream);
+  color: var(--starbucks-black);
+  font-weight: 600;
   line-height: unset;
   text-align: initial;
   text-overflow: unset;
   overflow: unset;
   white-space: unset;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.tabs .tabs-list button:hover {
+  background-color: var(--starbucks-green-light);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .tabs .tabs-list button p {
@@ -40,15 +51,17 @@
 }
 
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  background-color: var(--starbucks-green);
+  color: white;
   cursor: initial;
+  box-shadow: var(--shadow-light);
 }
 
 .tabs .tabs-panel {
-  margin-top: -1px;
-  padding: 24px;
-  border: 1px solid var(--dark-color);
+  padding: var(--spacing-l) var(--spacing-m);
+  background-color: white;
+  border-radius: 0 var(--border-radius-m) var(--border-radius-m) var(--border-radius-m);
+  box-shadow: var(--shadow-light);
   overflow: auto;
 }
 

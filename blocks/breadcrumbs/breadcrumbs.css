@@ -1,6 +1,7 @@
+/* Starbucks-style breadcrumbs with green accents */
 .breadcrumbs nav {
   margin: 0;
-  padding: 16px 0;
+  padding: var(--spacing-s) 0;
 }
 
 .breadcrumbs-list {
@@ -9,34 +10,38 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 8px;
+  gap: var(--spacing-xs);
   align-items: center;
 }
 
 .breadcrumbs-list li {
   display: inline-flex;
   align-items: center;
-  font-size: 14px;
-  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+  color: var(--starbucks-black);
 }
 
 .breadcrumbs-list li:not(:last-child)::after {
-  content: '/';
-  margin-left: 8px;
-  color: #999;
+  content: '›';
+  margin-left: var(--spacing-xs);
+  color: var(--starbucks-green);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .breadcrumbs-list li a {
-  color: var(--link-color);
+  color: var(--starbucks-green);
   text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
 }
 
 .breadcrumbs-list li a:hover {
-  color: var(--link-hover-color);
+  color: var(--starbucks-green-dark);
   text-decoration: underline;
 }
 
 .breadcrumbs-list li.breadcrumbs-item-active {
-  color: #666;
-  font-weight: 500;
+  color: var(--starbucks-black);
+  font-weight: 600;
 }

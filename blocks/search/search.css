@@ -1,3 +1,4 @@
+/* Starbucks-style search with rounded input and green accents */
 .search {
   max-width: 800px;
   margin: 0 auto;
@@ -5,23 +6,24 @@
 
 .search-form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: var(--spacing-s);
+  margin-bottom: var(--spacing-l);
 }
 
 .search-form input[type="search"] {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 14px 20px;
+  border: 2px solid var(--starbucks-cream);
+  border-radius: var(--border-radius-full);
   font-size: 16px;
   font-family: inherit;
+  transition: all 0.3s ease;
 }
 
 .search-form input[type="search"]:focus {
   outline: none;
-  border-color: var(--link-color);
-  box-shadow: 0 0 0 3px rgba(59, 99, 251, 0.1);
+  border-color: var(--starbucks-green);
+  box-shadow: 0 0 0 3px rgba(0, 112, 74, 0.1);
 }
 
 .search-form button {
@@ -29,7 +31,7 @@
 }
 
 .search-results {
-  margin-top: 20px;
+  margin-top: var(--spacing-m);
 }
 
 .search-results-list {
@@ -39,8 +41,8 @@
 }
 
 .search-result-item {
-  border-bottom: 1px solid #eee;
-  padding: 20px 0;
+  border-bottom: 1px solid var(--starbucks-cream);
+  padding: var(--spacing-m) 0;
 }
 
 .search-result-item:last-child {
@@ -51,25 +53,27 @@
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: background-color 0.2s;
-  padding: 10px;
-  margin: -10px;
-  border-radius: 4px;
+  transition: all 0.3s ease;
+  padding: var(--spacing-s);
+  margin: calc(-1 * var(--spacing-s));
+  border-radius: var(--border-radius-s);
 }
 
 .search-result-item a:hover {
-  background-color: #f5f5f5;
+  background-color: var(--starbucks-cream);
+  transform: translateX(4px);
 }
 
 .search-result-item h3 {
-  margin: 0 0 8px;
-  color: var(--link-color);
+  margin: 0 0 var(--spacing-xs);
+  color: var(--starbucks-green);
   font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .search-result-item p {
   margin: 0;
-  color: #666;
+  color: var(--starbucks-black);
   line-height: 1.5;
 }
 
@@ -77,11 +81,15 @@
 .search-message,
 .search-loading,
 .search-error {
-  padding: 20px;
+  padding: var(--spacing-m);
   text-align: center;
-  color: #666;
+  color: var(--starbucks-black);
+  background-color: var(--starbucks-cream);
+  border-radius: var(--border-radius-s);
 }
 
 .search-error {
-  color: #d00;
+  color: #721c24;
+  background-color: #ffe5e5;
+  border: 2px solid #d00;
 }

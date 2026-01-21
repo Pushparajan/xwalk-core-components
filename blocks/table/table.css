@@ -1,6 +1,9 @@
+/* Starbucks-style table with green headers and cream striping */
 .table {
   width: 100%;
   overflow-x: auto;
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-light);
 }
 
 .table table {
@@ -8,6 +11,8 @@
   max-width: 100%;
   border-collapse: collapse;
   font-size: var(--body-font-size-xs);
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
 }
 
 @media (width >= 600px) {
@@ -23,21 +28,30 @@
 }
 
 .table table thead tr {
-  border-top: 2px solid #dadada;
-  border-bottom: 2px solid #dadada;
+  background-color: var(--starbucks-green);
+  color: white;
+}
+
+.table table thead th {
+  border-bottom: 3px solid var(--starbucks-green-dark);
 }
 
 .table table tbody tr {
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid var(--starbucks-cream);
+  transition: background-color 0.2s ease;
+}
+
+.table table tbody tr:hover {
+  background-color: var(--starbucks-cream);
 }
 
 .table table th {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .table table th,
 .table table td {
-  padding: 0.5em;
+  padding: var(--spacing-s);
   text-align: left;
 }
 
@@ -52,16 +66,20 @@
 
 /* no header variant */
 .table.no-header table tbody tr {
-  border-top: 1px solid #dadada;
+  border-top: 1px solid var(--starbucks-cream);
 }
 
 /* striped variant */
 .table.striped tbody tr:nth-child(odd) {
-  background-color: var(--light-color);
+  background-color: var(--starbucks-cream);
+}
+
+.table.striped tbody tr:nth-child(even) {
+  background-color: white;
 }
 
 /* bordered variant */
 .table.bordered table th,
 .table.bordered table td {
-  border: 1px solid #dadada;
+  border: 1px solid var(--starbucks-cream);
 }
