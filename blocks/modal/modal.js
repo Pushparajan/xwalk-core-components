@@ -22,7 +22,14 @@ export async function createModal(contentNodes) {
   closeButton.setAttribute('aria-label', 'Close');
   closeButton.type = 'button';
   closeButton.innerHTML = '<span class="icon icon-close"></span>';
-  closeButton.addEventListener('click', () => dialog.close());
+  closeButton.addEventListener('click', () => {
+    dialog.close();
+    // Analytics tracking
+    dialog.dispatchEvent(new CustomEvent('modal:close', {
+      bubbles: true,
+      detail: { method: 'close-button' },
+    }));
+  });
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');
@@ -38,7 +45,21 @@ export async function createModal(contentNodes) {
     const { clientX, clientY } = e;
     if (clientX < left || clientX > right || clientY < top || clientY > bottom) {
       dialog.close();
+      // Analytics tracking
+      dialog.dispatchEvent(new CustomEvent('modal:close', {
+        bubbles: true,
+        detail: { method: 'backdrop-click' },
+      }));
     }
+  });
+
+  // Enhanced keyboard support (Escape key is native, but track it)
+  dialog.addEventListener('cancel', (e) => {
+    // Analytics tracking for Escape key
+    dialog.dispatchEvent(new CustomEvent('modal:close', {
+      bubbles: true,
+      detail: { method: 'escape-key' },
+    }));
   });
 
   dialog.addEventListener('close', () => {
@@ -56,6 +77,15 @@ export async function createModal(contentNodes) {
       // reset scroll position
       setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');
+
+      // Analytics tracking for modal open
+      dialog.dispatchEvent(new CustomEvent('modal:open', {
+        bubbles: true,
+        detail: { timestamp: Date.now() },
+      }));
+
+      // Focus management - focus close button for accessibility
+      closeButton.focus();
     },
   };
 }
