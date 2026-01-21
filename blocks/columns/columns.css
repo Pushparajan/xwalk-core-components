@@ -1,10 +1,20 @@
+/* Starbucks-style columns with proper spacing and image styling */
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-m);
 }
 
 .columns img {
   width: 100%;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+.columns img:hover {
+  box-shadow: var(--shadow-medium);
+  transform: scale(1.02);
 }
 
 .columns > div > div {
@@ -23,7 +33,7 @@
   .columns > div {
     align-items: center;
     flex-direction: unset;
-    gap: 24px;
+    gap: var(--spacing-l);
   }
 
   .columns > div > div {

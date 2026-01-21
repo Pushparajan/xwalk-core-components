@@ -1,17 +1,43 @@
+/* Starbucks-style quote with green accent and elegant styling */
+.quote {
+  background-color: var(--starbucks-cream);
+  padding: var(--spacing-xl) var(--spacing-m);
+  border-radius: var(--border-radius-m);
+  position: relative;
+}
+
+.quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    var(--starbucks-green) 0%,
+    var(--starbucks-green-light) 100%
+  );
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+}
+
 .quote blockquote {
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--spacing-m);
   max-width: 900px;
 }
 
 @media (width >= 900px) {
   .quote blockquote {
-    padding: 0 32px;
+    padding: 0 var(--spacing-l);
   }
 }
 
 .quote blockquote .quote-quotation {
-  font-size: 120%;
+  font-size: 140%;
+  font-weight: 600;
+  color: var(--starbucks-black);
+  line-height: 1.4;
 }
 
 .quote blockquote .quote-quotation > :first-child {
@@ -20,19 +46,24 @@
 
 .quote blockquote .quote-quotation > :first-child::before,
 .quote blockquote .quote-quotation > :last-child::after {
+  color: var(--starbucks-green);
+  font-size: 150%;
   line-height: 0;
 }
 
 .quote blockquote .quote-quotation > :first-child::before {
-  content: "“";
+  content: """;
 }
 
 .quote blockquote .quote-quotation > :last-child::after {
-  content: "”";
+  content: """;
 }
 
 .quote blockquote .quote-attribution {
   text-align: right;
+  color: var(--starbucks-green);
+  font-weight: 600;
+  margin-top: var(--spacing-m);
 }
 
 .quote blockquote .quote-attribution > :first-child::before {

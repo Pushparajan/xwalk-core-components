@@ -3,25 +3,59 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  border: none;
   background-color: var(--background-color);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cards > ul > li:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-4px);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 24px;
+}
+
+.cards .cards-card-body h3 {
+  color: var(--starbucks-black);
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.cards .cards-card-body p {
+  color: var(--starbucks-black);
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .cards .cards-card-image {
   line-height: 0;
+  overflow: hidden;
 }
 
 .cards > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+
+.cards > ul > li:hover img {
+  transform: scale(1.05);
+}
+
+/* Button styling within cards */
+.cards .cards-card-body .button {
+  margin-top: 16px;
 }
