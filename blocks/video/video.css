@@ -1,7 +1,8 @@
+/* Starbucks-style video player with rounded corners and green play button */
 .video {
   text-align: center;
   max-width: 900px;
-  margin: 24px auto;
+  margin: var(--spacing-m) auto;
 }
 
 .video[data-embed-loaded='false']:not(.placeholder) {
@@ -12,16 +13,22 @@
 .video > div {
   display: flex;
   justify-content: center;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
 }
 
 .video video {
   max-width: 100%;
+  border-radius: var(--border-radius-m);
 }
 
 .video .video-placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
   position: relative;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
 }
 
 .video .video-placeholder > * {
@@ -48,11 +55,21 @@
 .video .video-placeholder-play button {
   position: relative;
   display: block;
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  outline: 2px solid;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  outline: none;
   padding: 0;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-medium);
+}
+
+.video .video-placeholder-play button:hover {
+  background-color: var(--starbucks-green);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-heavy);
 }
 
 .video .video-placeholder-play button::before {
@@ -61,18 +78,28 @@
   box-sizing: border-box;
   position: absolute;
   width: 0;
-  height: 24px;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 18px solid;
+  height: 28px;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid var(--starbucks-black);
   top: 50%;
-  left: calc(50% + 2px);
+  left: calc(50% + 3px);
   transform: translate(-50%, -50%);
+  transition: border-left-color 0.3s ease;
+}
+
+.video .video-placeholder-play button:hover::before {
+  border-left-color: white;
 }
 
 .video .video-placeholder-play button:focus,
 .video .video-placeholder-play button:focus-visible {
-  outline: 2px solid black;
-  outline-offset: 2px;
-  background-color: black;
+  outline: 3px solid var(--starbucks-green);
+  outline-offset: 4px;
+  background-color: var(--starbucks-green);
+}
+
+.video .video-placeholder-play button:focus::before,
+.video .video-placeholder-play button:focus-visible::before {
+  border-left-color: white;
 }
