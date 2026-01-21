@@ -54,16 +54,76 @@ function bindEvents(block) {
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', (e) => {
       const slideIndicator = e.currentTarget.parentElement;
-      showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
+      const slideIndex = parseInt(slideIndicator.dataset.targetSlide, 10);
+      showSlide(block, slideIndex);
+
+      // Analytics tracking
+      block.dispatchEvent(new CustomEvent('carousel:navigate', {
+        bubbles: true,
+        detail: { slideIndex, method: 'indicator' },
+      }));
     });
   });
 
   block.querySelector('.slide-prev').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+    const currentSlide = parseInt(block.dataset.activeSlide, 10);
+    showSlide(block, currentSlide - 1);
+
+    // Analytics tracking
+    block.dispatchEvent(new CustomEvent('carousel:navigate', {
+      bubbles: true,
+      detail: { slideIndex: currentSlide - 1, method: 'prev-button' },
+    }));
   });
+
   block.querySelector('.slide-next').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+    const currentSlide = parseInt(block.dataset.activeSlide, 10);
+    showSlide(block, currentSlide + 1);
+
+    // Analytics tracking
+    block.dispatchEvent(new CustomEvent('carousel:navigate', {
+      bubbles: true,
+      detail: { slideIndex: currentSlide + 1, method: 'next-button' },
+    }));
   });
+
+  // Touch/swipe support for mobile
+  const slidesContainer = block.querySelector('.carousel-slides');
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slidesContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  slidesContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe(block);
+  }, { passive: true });
+
+  function handleSwipe(swipeBlock) {
+    const swipeThreshold = 50; // Minimum swipe distance
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      const currentSlide = parseInt(swipeBlock.dataset.activeSlide, 10);
+      if (diff > 0) {
+        // Swipe left - next slide
+        showSlide(swipeBlock, currentSlide + 1);
+        swipeBlock.dispatchEvent(new CustomEvent('carousel:navigate', {
+          bubbles: true,
+          detail: { slideIndex: currentSlide + 1, method: 'swipe' },
+        }));
+      } else {
+        // Swipe right - previous slide
+        showSlide(swipeBlock, currentSlide - 1);
+        swipeBlock.dispatchEvent(new CustomEvent('carousel:navigate', {
+          bubbles: true,
+          detail: { slideIndex: currentSlide - 1, method: 'swipe' },
+        }));
+      }
+    }
+  }
 
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

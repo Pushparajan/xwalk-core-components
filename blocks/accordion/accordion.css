@@ -31,6 +31,9 @@
   color: var(--starbucks-black);
   transition: all 0.3s ease;
   border-radius: var(--border-radius-s);
+  min-height: 44px; /* WCAG minimum touch target */
+  display: flex;
+  align-items: center;
 }
 
 .accordion details[open] summary {
@@ -43,29 +46,48 @@
   background-color: white;
 }
 
+.accordion details summary:focus-visible {
+  outline: 2px solid var(--starbucks-green);
+  outline-offset: 2px;
+}
+
 .accordion details summary::-webkit-details-marker {
   display: none;
 }
 
-.accordion details summary::after {
-  content: '';
+/* Visual indicator icon */
+.accordion-icon {
   position: absolute;
+  right: var(--spacing-m);
   top: 50%;
-  right: 24px;
-  transform: translateY(-50%) rotate(135deg);
-  width: 8px;
-  height: 8px;
-  border: 2px solid var(--starbucks-green);
-  border-width: 2px 2px 0 0;
-  transition: transform 0.3s ease;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.accordion details[open] summary::after {
-  transform: translateY(-50%) rotate(-45deg);
+.accordion-icon::after {
+  content: '▼';
+  color: var(--starbucks-green);
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.accordion details[open] .accordion-icon::after {
+  transform: rotate(-180deg);
+}
+
+/* Legacy arrow support removed, using new icon instead */
+.accordion details summary::after {
+  content: none;
 }
 
 .accordion details .accordion-item-body {
   padding: 0 var(--spacing-m) var(--spacing-s);
+  overflow: hidden;
 }
 
 .accordion details[open] .accordion-item-body {
